@@ -8,4 +8,4 @@ Mazeran Lorris,
 Moginet Kevin,
 Moreno Maxime.
 
-
+Representation graphique d'objet git.
