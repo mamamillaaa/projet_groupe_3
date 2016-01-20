@@ -3,9 +3,9 @@ Projet de programation S4 2016
 
 Ce projet* est réalisé avec eclipse par:
 
-Robert Elodie,
-Mazeran Lorris,
-Moginet Kevin,
-Moreno Maxime.
+ROBERT Elodie,
+MAZERAN Lorris,
+MOGINET Kevin,
+MORENO Maxime.
 
 *Representation graphique d'objet git.
