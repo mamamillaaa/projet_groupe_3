@@ -4,7 +4,7 @@ Projet de programation S4 2016
 Ce projet* est réalisé avec eclipse par:
 
 Robert Elodie,
-Mazeran Lorrisme,
+Mazeran Lorris,
 Moginet Kevin,
 Moreno Maxime.
 
