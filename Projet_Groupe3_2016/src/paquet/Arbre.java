@@ -1,5 +1,6 @@
 package paquet;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTree;
@@ -13,20 +14,17 @@ public class Arbre extends JFrame{
 	
 	private javax.swing.JPanel jContentPane = null;
 	private JTree jTree = null;
-    private File[] dossiers = fils.listFiles();
+	public ArrayList listeArbre = new ArrayList();
+    /*private File[] dossiers = fils.listFiles();*/
 	
 
 	public static void main(String[] args){
 		// TODO Auto-generated method stub
-		Arbre testJtree = new Arbre();
+		Arbre testJtree = new Arbre(listeTest);
 		testJtree.setVisible(true);
 
 	}
 	
-	public static File getChemin(String fils){
-		File chemin = new File(fils);
-		return chemin;
-	}
 	
 	//Exemple de base d'un arbre
 	/*private JTree getJTree() {
@@ -42,16 +40,16 @@ public class Arbre extends JFrame{
 		if (jTree == null) {
 			
 		DefaultMutableTreeNode racine = new DefaultMutableTreeNode("objects");
-		
-		for (int i = 0; i < this.dossiers.length; i++) {
-			/*if (dossiers[i].isDirectory()){
-				File fils = new File(dossiers[i]);
-			    File[] noeuds = racine.listFiles();
-			    Arbre enfant = new Arbre();
-			    enfant.getJTree(noeuds);
-			}*/
-			DefaultMutableTreeNode noeud = new DefaultMutableTreeNode(dossiers[i]);
+
+		for (int i = 0; i < listeArbre.size(); i++) {
+			ArrayList liste2 = (ArrayList) ((ArrayList) listeArbre.get(i)).get(1);
+			DefaultMutableTreeNode noeud = new DefaultMutableTreeNode(listeArbre.get(i));
 			racine.add(noeud);
+			for (int j = 0; j < liste2.size(); j++) {
+				DefaultMutableTreeNode noeud1 = new DefaultMutableTreeNode(liste2.get(i));
+				noeud.add(noeud1);
+			}
+
 		}
 		/*DefaultMutableTreeNode noeud1 = new DefaultMutableTreeNode("Noeud 1");
 		racine.add(noeud1);
@@ -66,8 +64,9 @@ public class Arbre extends JFrame{
 		return jTree;
 	}
 	
-	public Arbre() {
+	public Arbre(ArrayList liste) {
 		super();
+		this.listeArbre = liste;
 		initialize();
 		}
 	
