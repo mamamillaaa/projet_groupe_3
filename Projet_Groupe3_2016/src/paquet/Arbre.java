@@ -14,7 +14,7 @@ public class Arbre extends JFrame{
 	
 	private javax.swing.JPanel jContentPane = null;
 	private JTree jTree = null;
-	public ArrayList listeArbre = new ArrayList();
+	public ArrayList<Doublet> listeArbre = null;
     /*private File[] dossiers = fils.listFiles();*/
 	
 
@@ -42,14 +42,13 @@ public class Arbre extends JFrame{
 		DefaultMutableTreeNode racine = new DefaultMutableTreeNode("objects");
 
 		for (int i = 0; i < listeArbre.size(); i++) {
-			ArrayList liste2 = (ArrayList) ((ArrayList) listeArbre.get(i)).get(1);
-			DefaultMutableTreeNode noeud = new DefaultMutableTreeNode(listeArbre.get(i));
-			racine.add(noeud);
+			DefaultMutableTreeNode noeud1 = new DefaultMutableTreeNode(listeArbre.get(0));
+			racine.add(noeud1);
+			ArrayList liste2= listeArbre.get(i).getListeFils();
 			for (int j = 0; j < liste2.size(); j++) {
-				DefaultMutableTreeNode noeud1 = new DefaultMutableTreeNode(liste2.get(i));
-				noeud.add(noeud1);
+				DefaultMutableTreeNode noeud2 = new DefaultMutableTreeNode(liste2.get(j));
+				noeud1.add(noeud2);
 			}
-
 		}
 		/*DefaultMutableTreeNode noeud1 = new DefaultMutableTreeNode("Noeud 1");
 		racine.add(noeud1);
