@@ -4,3 +4,7 @@ http://www.ukonline.be/programmation/java/tutoriel/chapitre10/page2.php  // cour
 http://www.jmdoudoux.fr/java/dej/chap-swt.htm                            // cours interface
 http://www.infres.enst.fr/~hudry/coursJava/interSwing/                   // cours interface
 https://learnxinyminutes.com/docs/java/                                  // cours de java complet
+
+http://download.eclipse.org/egit/updates/                                // installer JGit
+http://stackoverflow.com/questions/1685228/how-to-cat-a-file-in-jgit     // voir le contenu d'un git object
+http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/ch08.html#_la_base_d_8217_objets //installer zpipe
