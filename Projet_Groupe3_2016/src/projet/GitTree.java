@@ -5,7 +5,6 @@ public class GitTree extends GitObjectEnf{
 
 	public GitTree(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 
 	public GitTree getTree (){

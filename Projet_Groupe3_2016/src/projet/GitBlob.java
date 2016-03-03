@@ -5,7 +5,6 @@ public class GitBlob extends GitObject {
 
 	public GitBlob(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public GitTree getTree (){

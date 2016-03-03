@@ -5,7 +5,6 @@ public class GitCommit extends GitObjectEnf {
 	
 	public GitCommit(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public GitTree getTree (){

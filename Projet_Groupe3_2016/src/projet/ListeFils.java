@@ -27,19 +27,20 @@ public class ListeFils {
 			}
 			this.truc.add(file);
 			
-
 		}
 	}
 	
-	for (int k=0; k <truc.length; k++){
+	
+	public static void main(String[] args) {
+		ListeFils lst = new ListeFils();
+		for (int k=0; k <lst.truc.size(); k++){
 
-		try {
-			BufferedInputStream oos =new BufferedInputStream(
-					new FileInputStream( truc[k]));
-			System.out.println(oos);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				BufferedInputStream oos =new BufferedInputStream(new FileInputStream(lst.truc.get(k)));
+				System.out.println(oos);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
