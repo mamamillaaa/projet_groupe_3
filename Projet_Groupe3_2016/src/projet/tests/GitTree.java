@@ -1,4 +1,4 @@
-package projet;
+package projet.tests;
 
 public class GitTree extends GitObjectEnf{
 	private GitTree tree;
@@ -14,4 +14,7 @@ public class GitTree extends GitObjectEnf{
 	public void setTree (GitTree tree){
 			this.tree = tree;
 		}
+	
+	
+	
 }
