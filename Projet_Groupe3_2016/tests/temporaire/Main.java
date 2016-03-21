@@ -13,7 +13,7 @@ public class Main {
 		System.out.println("lst "+lst.ListeHashCode.get(6));
 		
 		lst.TrierHash();
-		System.out.println(lst.ListeGitBlob.get(1).getBlob());
+		System.out.println(lst.ListeGitCommit.get(0).getCommit());
 
 		
 
