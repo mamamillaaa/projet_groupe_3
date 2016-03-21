@@ -62,20 +62,17 @@ public class ListeHashGit {
 			byte s = truc[1];
 			if (s==108){
 				ListeGitBlob.add(new GitBlob(this.ListeHashCode.get(i)));
-				System.out.println("blob"); //Test
 				byte[] troc = Decompression.decompress(Decompression.LireFichier(this.CheminHashCode.get(i)));
 				ListeGitBlob.get(ListeGitBlob.size()-1).setBlob(ByteToString.byteToString(troc));
 			}
 				
 			else if (s==114){
 				ListeGitTree.add(new GitTree(this.ListeHashCode.get(i)));
-				System.out.println("tree"); //Test
 				byte[] troc = Decompression.decompress(Decompression.LireFichier(this.CheminHashCode.get(i)));
 				ListeGitTree.get(ListeGitTree.size()-1).setTree(ByteToString.byteToString(troc));
 			}
 			else if (s==111){
 				ListeGitCommit.add(new GitCommit(this.ListeHashCode.get(i)));
-				System.out.println("commit"); //Test
 				byte[] troc = Decompression.decompress(Decompression.LireFichier(this.CheminHashCode.get(i)));
 				ListeGitCommit.get(ListeGitCommit.size()-1).setCommit(ByteToString.byteToString(troc));
 			}
@@ -85,9 +82,23 @@ public class ListeHashGit {
 	public void InformationsHash(){
 		for (int i = 0; i < ListeGitCommit.size(); i++) {
 			String[] Split = ListeGitCommit.get(i).getCommit().split("\n");
+			ListeGitCommit.get(i).setNumero(Split[0].substring(7));
 			ListeGitCommit.get(i).setParent(Split[1].substring(7));
 			ListeGitCommit.get(i).setAuthor(Split[2].substring(7));
 			ListeGitCommit.get(i).setCommitter(Split[3].substring(10));
+			ListeGitCommit.get(i).setName(Split[5]);
+		}
+		
+		for (int i = 0; i < ListeGitBlob.size(); i++) {
+			String[] Split = ListeGitBlob.get(i).getBlob().split("\n");
+			ListeGitBlob.get(i).setNumero(Split[0].substring(5));
+			ListeGitBlob.get(i).setBlob(ListeGitBlob.get(i).getBlob().substring(9));
+		}
+		
+		for (int i = 0; i < ListeGitBlob.size(); i++) {
+			String[] Split = ListeGitBlob.get(i).getBlob().split("\n");
+			ListeGitTree.get(i).setNumero(Split[0].substring(5));
+			//ListeGitTree.get(i).setBlob(ListeGitBlob.get(i).getBlob().substring(9));
 		}
 		
 	}

@@ -1,7 +1,6 @@
 package temporaire;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.zip.DataFormatException;
 
 public class Main {
@@ -10,10 +9,10 @@ public class Main {
 
 		ListeHashGit lst = new ListeHashGit();
 		lst.listeHash("/home/ragez/git/projet_groupe_3/.git/objects");
-		System.out.println("lst "+lst.ListeHashCode.get(6));
 		
 		lst.TrierHash();
-		System.out.println(lst.ListeGitCommit.get(0).getCommit());
+		lst.InformationsHash();
+		System.out.println(lst.ListeGitTree.get(0).getTree());
 
 		
 
