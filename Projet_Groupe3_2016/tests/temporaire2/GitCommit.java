@@ -1,17 +1,17 @@
 package temporaire2;
 
 public class GitCommit extends GitObjectEnf {
-	public static final String TYPE = "commit"; 
+	public static final String TYPE = "commit";
 
 	private String parent;
 	private String author;
 	private String committer;
 	private String name;
-	
+
 	public GitCommit(String id) {
 		super(id, TYPE);
 	}
-	
+
 	@Override
 	public void setContent(byte[] s) {
 		super.setContent(s);
@@ -45,7 +45,7 @@ public class GitCommit extends GitObjectEnf {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

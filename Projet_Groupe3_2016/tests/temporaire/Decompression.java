@@ -12,13 +12,11 @@ import java.util.zip.ZipInputStream;
 
 public class Decompression {
 
-	public static byte[] decompression(byte[] donnees) throws IOException,
-			DataFormatException {
+	public static byte[] decompression(byte[] donnees) throws IOException, DataFormatException {
 
 		Inflater inflater = new Inflater();
 		inflater.setInput(donnees);
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(
-				donnees.length);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(donnees.length);
 		byte[] buffer = new byte[1024];
 		while (!inflater.finished()) {
 			int cpt = inflater.inflate(buffer);
@@ -37,8 +35,7 @@ public class Decompression {
 		int longueur = (int) fichier.length();
 		byte[] donnees = new byte[longueur];
 		@SuppressWarnings("resource")
-		BufferedInputStream contenu = new BufferedInputStream(
-				new FileInputStream(fichier));
+		BufferedInputStream contenu = new BufferedInputStream(new FileInputStream(fichier));
 		contenu.read(donnees, 0, longueur);
 
 		return donnees;
@@ -59,9 +56,8 @@ public class Decompression {
 		GitObject result = null;
 		ZipInputStream zipInputStream = null;
 		try {
-			zipInputStream = new ZipInputStream(new BufferedInputStream(
-					new FileInputStream(path)));
-			
+			zipInputStream = new ZipInputStream(new BufferedInputStream(new FileInputStream(path)));
+
 			StringBuffer sb = new StringBuffer();
 			int data = zipInputStream.read();
 			int offset = 1;
@@ -70,32 +66,30 @@ public class Decompression {
 				zipInputStream.read();
 				offset += 1;
 			}
-			
+
 			if (data == -1) {
 				// gérer le cas d'erreur
 			}
-			
+
 			String header = sb.toString();
 			String[] vars = header.split(" ");
 			String type = vars[0];
 			String size = vars[1];
-			
-			
+
 			byte[] b = null;
 			zipInputStream.read(b, offset, (int) path.length());
-			
-			
+
 			switch (type) {
 			case GitTree.TYPE:
 				GitTree tree = new GitTree(id);
 				// operation sur le tree
 				result = tree;
 				break;
-				
+
 			case GitBlob.TYPE:
 				GitBlob blob = new GitBlob(id);
 				result = blob;
-				
+
 			case GitCommit.TYPE:
 				GitCommit commit = new GitCommit(id);
 				result = commit;
@@ -103,12 +97,11 @@ public class Decompression {
 				result = new GitObject(id, type);
 				break;
 			}
-			
+
 			result.setContent(b);
 			result.setTaille(size);
 			result.setHeader(header);
-			
-			
+
 		} catch (FileNotFoundException e) {
 			// TODO: gerer le cas d'erreur
 		} finally {

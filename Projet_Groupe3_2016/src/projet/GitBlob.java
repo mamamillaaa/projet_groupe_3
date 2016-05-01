@@ -6,12 +6,12 @@ public class GitBlob extends GitObject {
 	public GitBlob(String id) {
 		super(id);
 	}
-	
-	public GitTree getTree (){
+
+	public GitTree getTree() {
 		return tree;
 	}
 
-	public void setTree (GitTree tree){
+	public void setTree(GitTree tree) {
 		this.tree = tree;
 	}
 

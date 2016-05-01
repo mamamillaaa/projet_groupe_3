@@ -7,12 +7,12 @@ public class GitBlob extends GitObject {
 	public GitBlob(String id) {
 		super(id);
 	}
-	
-	public String getBlob (){
+
+	public String getBlob() {
 		return blob;
 	}
 
-	public void setBlob (String s){
+	public void setBlob(String s) {
 		this.blob = s;
 	}
 

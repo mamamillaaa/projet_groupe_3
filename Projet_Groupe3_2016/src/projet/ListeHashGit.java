@@ -28,7 +28,7 @@ public class ListeHashGit {
 		File[] listeFic = fichier.listFiles();
 		String pack = chemin + "/pack"; // permet de savoir quand on est dans le
 										// dossier "pack"
-		for (int i = 0;listeFic != null && i < listeFic.length; i++) {
+		for (int i = 0; listeFic != null && i < listeFic.length; i++) {
 			try {
 
 				if (listeFic[i].isDirectory()) {
@@ -38,12 +38,10 @@ public class ListeHashGit {
 					}
 
 				} else if (listeFic[i].isFile()) {
-					String cheminAbsolu = (String) listeFic[i]
-							.getAbsolutePath();
+					String cheminAbsolu = (String) listeFic[i].getAbsolutePath();
 					this.cheminHashCode.add(cheminAbsolu);
 					String[] splitHash = (cheminAbsolu).split("/");
-					String hash = splitHash[splitHash.length - 2]
-							+ splitHash[splitHash.length - 1];
+					String hash = splitHash[splitHash.length - 2] + splitHash[splitHash.length - 1];
 					this.listeHashCode.add(hash);
 				}
 			} catch (Exception e) {
@@ -56,16 +54,13 @@ public class ListeHashGit {
 	}
 
 	private void regardeSousFichier(String pack, File[] sousFichiers, int j) {
-		if (sousFichiers[j].isFile()
-				&& !(sousFichiers[j].getParent().equals(pack))) {
-			String cheminAbsolu = (String) sousFichiers[j]
-					.getAbsolutePath();
+		if (sousFichiers[j].isFile() && !(sousFichiers[j].getParent().equals(pack))) {
+			String cheminAbsolu = (String) sousFichiers[j].getAbsolutePath();
 			this.cheminHashCode.add(cheminAbsolu);// on rajoute
 													// le chemin
 													// du hash
 			String[] splitHash = (cheminAbsolu).split("/");
-			String hash = splitHash[splitHash.length - 2]
-					+ splitHash[splitHash.length - 1];
+			String hash = splitHash[splitHash.length - 2] + splitHash[splitHash.length - 1];
 			this.listeHashCode.add(hash);
 		}
 	}
@@ -76,62 +71,61 @@ public class ListeHashGit {
 			System.out.println(cheminHashCode.get(i));
 			System.out.println(listeHashCode.get(i));
 
-			/*byte[] tabByte = Decompression.decompression(Decompression
-					.lireFichier(this.cheminHashCode.get(i)));
-			byte element = tabByte[1];*/ // element récupérant le 2nd byte ("r",
-										// "o" ou "l") pour determiner son type
+			/*
+			 * byte[] tabByte = Decompression.decompression(Decompression
+			 * .lireFichier(this.cheminHashCode.get(i))); byte element =
+			 * tabByte[1];
+			 */ // element récupérant le 2nd byte ("r",
+				// "o" ou "l") pour determiner son type
 			GitObject type = Decompression.lireFichier(cheminHashCode.get(i), listeHashCode.get(i));
-			if (type.getType()=="blob"){
+			if (type.getType() == "blob") {
 				listeGitBlob.add((GitBlob) type);
-			}
-			else if (type.getType()=="commit"){
+			} else if (type.getType() == "commit") {
 				listeGitCommit.add((GitCommit) type);
 			}
-			if (type.getType()=="tree"){
+			if (type.getType() == "tree") {
 				listeGitTree.add((GitTree) type);
 			}
-			/*if (element == 108) {
-				GitBlob titi = new GitBlob(this.listeHashCode.get(i));
-				titi.setContent(Decompression.byteToString(tabByte));
-				//test
-				listeGitBlob.add(titi);
-			}
-
-			else if (element == 114) {
-				listeGitTree.add(new GitTree(this.listeHashCode.get(i)));
-				listeGitTree.get(listeGitTree.size() - 1).setContent(
-						Decompression.byteToString(tabByte));
-			} else if (element == 111) {
-				listeGitCommit.add(new GitCommit(this.listeHashCode.get(i)));
-				listeGitCommit.get(listeGitCommit.size() - 1).setContent(
-						Decompression.byteToString(tabByte));
-			}*/
+			/*
+			 * if (element == 108) { GitBlob titi = new
+			 * GitBlob(this.listeHashCode.get(i));
+			 * titi.setContent(Decompression.byteToString(tabByte)); //test
+			 * listeGitBlob.add(titi); }
+			 * 
+			 * else if (element == 114) { listeGitTree.add(new
+			 * GitTree(this.listeHashCode.get(i)));
+			 * listeGitTree.get(listeGitTree.size() - 1).setContent(
+			 * Decompression.byteToString(tabByte)); } else if (element == 111)
+			 * { listeGitCommit.add(new GitCommit(this.listeHashCode.get(i)));
+			 * listeGitCommit.get(listeGitCommit.size() - 1).setContent(
+			 * Decompression.byteToString(tabByte)); }
+			 */
 		}
 	}
 
-	/*public void informationsHash() {
-		for (int i = 0; i < listeGitCommit.size(); i++) {
-			String[] tabSplit = listeGitCommit.get(i).getContent());
-			listeGitCommit.get(i).setTaille(tabSplit[0].substring(7));
-			listeGitCommit.get(i).setParent(tabSplit[1].substring(7));
-			listeGitCommit.get(i).setAuthor(tabSplit[2].substring(7));
-			listeGitCommit.get(i).setCommitter(tabSplit[3].substring(10));
-			listeGitCommit.get(i).setName(tabSplit[5]);
-		}
-
-		for (int i = 0; i < listeGitBlob.size(); i++) {
-			int tabSplit = listeGitBlob.get(i).getContent().length;
-			listeGitBlob.get(i).setTaille(tabSplit[0].substring(5));
-			listeGitBlob.get(i).setContent(
-					listeGitBlob.get(i).getContent().substring(9));
-		}
-
-		for (int i = 0; i < listeGitTree.size(); i++) {
-			String[] tabSplit = listeGitTree.get(i).getContent().split("\n");
-			listeGitTree.get(i).setTaille(tabSplit[0].substring(5));
-			// ListeGitTree.get(i).setBlob(ListeGitBlob.get(i).getBlob().substring(9));
-		}
-
-	}*/
+	/*
+	 * public void informationsHash() { for (int i = 0; i <
+	 * listeGitCommit.size(); i++) { String[] tabSplit =
+	 * listeGitCommit.get(i).getContent());
+	 * listeGitCommit.get(i).setTaille(tabSplit[0].substring(7));
+	 * listeGitCommit.get(i).setParent(tabSplit[1].substring(7));
+	 * listeGitCommit.get(i).setAuthor(tabSplit[2].substring(7));
+	 * listeGitCommit.get(i).setCommitter(tabSplit[3].substring(10));
+	 * listeGitCommit.get(i).setName(tabSplit[5]); }
+	 * 
+	 * for (int i = 0; i < listeGitBlob.size(); i++) { int tabSplit =
+	 * listeGitBlob.get(i).getContent().length;
+	 * listeGitBlob.get(i).setTaille(tabSplit[0].substring(5));
+	 * listeGitBlob.get(i).setContent(
+	 * listeGitBlob.get(i).getContent().substring(9)); }
+	 * 
+	 * for (int i = 0; i < listeGitTree.size(); i++) { String[] tabSplit =
+	 * listeGitTree.get(i).getContent().split("\n");
+	 * listeGitTree.get(i).setTaille(tabSplit[0].substring(5)); //
+	 * ListeGitTree.get(i).setBlob(ListeGitBlob.get(i).getBlob().substring(9));
+	 * }
+	 * 
+	 * }
+	 */
 
 }

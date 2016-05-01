@@ -7,16 +7,16 @@ public class GitCommit extends GitObjectEnf {
 	private String committer;
 	private String name;
 	private String numero;
-	
+
 	public GitCommit(String id) {
 		super(id);
 	}
-	
-	public String getCommit (){
+
+	public String getCommit() {
 		return commit;
 	}
-	
-	public void setCommit (String s){
+
+	public void setCommit(String s) {
 		this.commit = s;
 	}
 
@@ -47,7 +47,7 @@ public class GitCommit extends GitObjectEnf {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -55,9 +55,9 @@ public class GitCommit extends GitObjectEnf {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
+
 	public String getNumero() {
 		return numero;
 	}
-	
+
 }

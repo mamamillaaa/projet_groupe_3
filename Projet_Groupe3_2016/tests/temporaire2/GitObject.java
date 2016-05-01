@@ -6,17 +6,17 @@ public class GitObject {
 	private String taille;
 	private String type;
 	private String header;
-	
-	public GitObject (String id, String type){
+
+	public GitObject(String id, String type) {
 		this.id = id;
 		this.type = type;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
 
-	public String getId(){
+	public String getId() {
 		return this.id;
 	}
 
@@ -43,5 +43,5 @@ public class GitObject {
 	public void setHeader(String header) {
 		this.header = header;
 	}
-	
+
 }
